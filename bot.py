@@ -25,6 +25,13 @@ if not TOKEN:
 CONFIG_PATH = "config.json"
 DB_PATH = os.getenv("DB_PATH", "lager.db")
 
+# Ensure DB folder exists (important for Railway volume mounts)
+db_dir = os.path.dirname(DB_PATH)
+if db_dir:
+    os.makedirs(db_dir, exist_ok=True)
+
+print("Using DB_PATH:", DB_PATH)
+
 TYPE_FBH = "FBH"
 TYPE_KL = "KL"
 
